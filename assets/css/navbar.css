@@ -1,0 +1,34 @@
+.active {
+  color: var(--bs-border-color);
+  height: calc(100% + 10px) !important;
+}
+
+.nav-link {
+  padding-left: 20px !important;
+  padding-right: 40px !important;
+  height: 100%;
+  color: white !important;
+  transition: all 200ms !important;
+}
+
+@media screen and (min-width: 1300px) {
+  .navbar-nav li:first-child a {
+    border-bottom-left-radius: 10px !important;
+  }
+
+  .navbar-nav li:last-child a {
+    border-bottom-right-radius: 10px !important;
+  }
+}
+
+.navbar-nav li:first-child a {
+  border-bottom-left-radius: 0px;
+}
+
+.navbar-nav li:last-child a {
+  border-bottom-right-radius: 0px;
+}
+
+nav {
+  font-size: 12px;
+}

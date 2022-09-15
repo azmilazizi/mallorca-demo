@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Mallorca</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width initial-scale=1.0" />
+
+        <link rel="stylesheet" href="assets/css/navbar.css">
+        <link rel="stylesheet" href="assets/css/app.css">
+        <link rel="stylesheet" href="assets/css/modal.css">
+
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font/stylesheet.css">
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+        <script defer src="node_modules/alpinejs/dist/cdn.min.js"></script>
+        <script src="assets/js/csi.min.js"></script>
+        <script src="assets/js/variables.js"></script>
+        <style>
+          footer {
+            background-color: #000000;
+            color: #a09f9f;
+            padding: 20px 10vw 20px 10vw;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            font-size: 0.7rem;
+            align-items: center;
+          }
+          body {
+            background-image: url('assets/images/background.webp'); 
+            font-family: 'poppinslight';
+            overflow-x: hidden !important;
+            width: 100vw;
+            color: #a09f9f !important;
+            font-size: 1rem;
+          }
+          h1 {
+            color: #DBD8D8;
+            font-size: 2rem;
+          }
+        </style>
+    </head>
+    <body x-data="{ index: 0, selected: 0 }">
+    
+      <template x-if="index != 0">
+        <!-- Modal -->
+        <div class="modal fade" id="rightModal" tabindex="-1" role="dialog" aria-labelledby="rightModalLabel" aria-hidden="true" style="--bs-modal-width: 100%;" data-bs-dismiss="modal">
+          <div class="modal-dialog modal-dialog-slideout" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="modal-image" :style="list[index -1][selected]['image']"></div>
+                  <div class="d-flex flex-sm-row flex-column justify-content-between w-100 pt-2">
+                    <div class="flex-grow-1">
+                      <h2 class="modal-header-text" x-text="list[index - 1][selected]['name']"></h2>
+                      <span class="modal-subheader-text" x-text="list[index - 1][selected]['category']"></span>
+                    </div>
+                    <div>
+                      <template x-if="index != 2">
+                        <div class="modal-info-header">Info :</div>
+                      </template>
+                      <template x-if="index == 2">
+                        <div class="modal-info-header">Ride Info :</div>
+                      </template>
+                    </div>
+                      <template x-if="index != 2">
+                        <span class="modal-description" x-text="list[index - 1][selected]['info']"></span>
+                      </template>
+                      <template x-if="index == 2">
+                        <div class="d-flex">
+                          <div>
+                            <div class="modal-attribute">MAX SPEED</div>
+                            <span class="modal-value" x-text="list[index - 1][selected]['max_speed']"></span>
+                            <template x-if="list[index - 1][selected]['category'] == 'FERRIS WHEEL'">
+                              <span class="modal-value" style="font-size: 0.7rem">m/s</span>
+                            </template>
+                            <template x-if="list[index - 1][selected]['category'] != 'FERRIS WHEEL'">
+                              <span class="modal-value" style="font-size: 0.7rem">km/h</span>
+                            </template>
+                          </div>
+                          <div class="modal-divider"></div>
+                          <div>
+                            <div class="modal-attribute">HEIGHT</div>
+                            <span class="modal-value" x-text="list[index - 1][selected]['height']"></span>
+                            <span class="modal-value" style="font-size: 0.7rem">feet</span>
+                          </div>
+                          <template x-if="'length' in list[index - 1][selected]">
+                            <div class="d-flex">
+                              <div class="modal-divider"></div>
+                              <div>
+                                <div class="modal-attribute">LENGTH</div>
+                                <span class="modal-value" x-text="list[index - 1][selected]['length']"></span>
+                                <span class="modal-value" style="font-size: 0.7rem">km/h</span>
+                              </div>
+                            </div>
+                          </template>
+                          <template x-if="'diameter' in list[index - 1][selected]">
+                            <div class="d-flex">
+                              <div class="modal-divider"></div>
+                              <div>
+                                <div class="modal-attribute">DIAMETER</div>
+                                <span class="modal-value" x-text="list[index - 1][selected]['diameter']"></span>
+                                <span class="modal-value" style="font-size: 0.7rem">meter</span>
+                              </div>
+                            </div>
+                          </template>
+                          <div class="modal-divider"></div>
+                          <div>
+                            <div class="modal-attribute">DURATION</div>
+                            <span class="modal-value" x-text="list[index - 1][selected]['duration']"></span>
+                            <span class="modal-value" style="font-size: 0.7rem">minutes</span>
+                          </div>
+                        </div>
+                      </template>
+                    </div>
+                  </div>
+                </div>
+                <div style="height: 10px; width: 10px; background-color: red; position: absolute; bottom: 0;"></div>
+            </div>
+          </div>
+        </div>
+      </template>
+      <div style="background: rgba(0,0,0,0.87);" class="fixed-top">
+        <nav class="navbar navbar-dark navbar-expand-md" style="padding: 0px 10vw 0px 10vw;height: 70px;">
+          <div class="container-fluid" style="height: 100%;">
+            <a role="button" x-on:click="index = 0" style="margin: auto;">
+              <img src="assets/images/logo.svg" width="200px">
+            </a>
+            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+          </div>
+          <div class="collapse navbar-collapse" id="navcol-1" style="flex-direction: row-reverse; height: 48px; align-self: self-start;">
+            <ul class="navbar-nav" style="align-self: self-start;">
+              <li class="nav-item"><a class="nav-link" role="button" x-on:click="index = 0" :class="index == 0 ? 'active rounded-bottom' : '' " style="background-color: #2C3648;">ABOUT</a></li>
+              <li class="nav-item"><a class="nav-link" role="button" x-on:click="index = 1" :class="index == 1 ? 'active rounded-bottom' : '' " style="background-color: #EA3C7E;">THEME<br>PARK</a></li>
+              <li class="nav-item"><a class="nav-link" role="button" x-on:click="index = 2" :class="index == 2 ? 'active rounded-bottom' : '' " style="background-color: #B64DDE;">DRY<br>PARK</a></li>
+              <li class="nav-item"><a class="nav-link" role="button" x-on:click="index = 3" :class="index == 3 ? 'active rounded-bottom' : '' " style="background-color: #03D2F9;">WATER<br>PARK</a></li>
+              <li class="nav-item"><a class="nav-link" role="button" x-on:click="index = 4" :class="index == 4 ? 'active rounded-bottom' : '' " style="background-color: #87A247;">ADVENTURE<br>LAND</a></li>
+              <li class="nav-item"><a class="nav-link" role="button" x-on:click="index = 5" :class="index == 5 ? 'active rounded-bottom' : '' " style="background-color: #F97E03;">TENNIS<br>CENTRE</a></li>
+              <li class="nav-item"><a class="nav-link" role="button" x-on:click="index = 6" :class="index == 6 ? 'active rounded-bottom' : '' " style="background-color: #EC5136;">COMMERCIAL<br>CENTRE</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <main style="margin-top: 70px;">
+          <div x-show.important="index == 0">
+            <div data-include="pages/about.html"></div>
+          </div>
+          <div x-show.important="index == 1">
+            <div data-include="pages/theme-park.html"></div>
+          </div>
+          <div x-show.important="index == 2">
+            <div data-include="pages/dry-park.html"></div>
+          </div>
+          <div x-show.important="index == 3">
+            <div data-include="pages/water-park.html"></div>
+          </div>
+          <div x-show.important="index == 4">
+            <div data-include="pages/adventure-land.html"></div>
+          </div>
+          <div x-show.important="index == 5">
+            <div data-include="pages/tennis-centre.html"></div>
+          </div>
+          <div x-show.important="index == 6">
+            <div data-include="pages/commercial-centre.html"></div>
+          </div>
+      </main>
+      <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    </body>
+    <footer>
+      <div class="d-flex ">
+        <span class="shareText">Share Connect</span> 
+        <img src="assets/icons/footer-facebook.svg" alt="" srcset="">
+        <img src="assets/icons/footer-instagram.svg" alt="" srcset="" style="margin-left: 10px">
+      </div>
+      <span style="margin-left: 20px">© 2022 Althamis Amusement Park ( Alor Gajah) Sdn Bhd</span>
+    </footer>
+</html>

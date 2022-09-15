@@ -1,0 +1,42 @@
+<div class="adventure-land-headerImage">
+</div>
+<div style="padding: 0px 10vw 0px">
+    <ul class="listItem">
+        <li><h1>ADVENTURE LAND</h1></li>
+        <li>Adventure Land will be covering a total area of 300 acre will engaged your soul back to the nature of the mother earth. With more than 200 units Jessina Homes Country Side ( with boat and kayak) , it will also host list of outdoor activities as you can witness in the pages of this web.</li>
+    </ul>
+    <ul class="listItem">
+        <li>
+            <ul class="listItem">
+                <li><h2>25 Things To Do</h2></li>
+                <li>
+                    <div class="headerDivider"></div>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <div class="container-fluid">
+                <div class="row g-2">
+                    <template x-for="(element, i) in list[3]">
+                        <a role="button" class="col-sm-12 col-lg-3 square" data-bs-toggle="modal" data-bs-target="#rightModal" x-on:click="selected = i">
+                            <div class="theme-park-carousel-parent">
+                                <div class="theme-park-carousel-text">
+                                    <div style="flex: 1">
+                                        <h4 x-text="element['name']"></h4>
+                                    </div>
+                                                            <span class="expandButton">EXPLORE 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="5.888" height="8.549" viewBox="0 0 5.888 8.549" style="margin-top: -1px;">
+                                            <path id="Icon_material-play-arrow" data-name="Icon material-play-arrow" d="M12,8.5v8.549l5.888-4.275Z" transform="translate(-12 -8.5)" fill="#fff"/>
+                                        </svg>                                      
+                                    </span>
+
+                                </div>
+                                <div class="theme-park-carousel" :style="element['image']"></div>
+                            </div>
+                        </a>
+                    </template>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

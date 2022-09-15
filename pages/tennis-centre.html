@@ -1,0 +1,43 @@
+<div class="tennis-centre-headerImage">
+</div>
+<div style="padding: 0px 10vw 0px">
+    <ul class="listItem">
+        <li><h1>TENNIS CENTRE</h1></li>
+        <li>Over 36 courts  ( with 3 grass and 3 clays),  the facilities will  be equipped with state of art gymnasium,  swimming  pool and student residence  aim to provide a high-quality facility, to be known as the Melaka Rim International Tennis Centre, with a range o f facilities, both tennis and non-tennis related that are accessible to the broad membership and wider community, day and evening, all the year round. Its also to provide Members and the local community with opportunities to play tennis at all levels, both competitive and social, and to promote the integrity of the club. Nonetheless, the ultimate goal for this establishment is to host 
+            series of Junior Grand Slam with the sanction of International Tennis Federation (ITF), to train and to produce Asean Grand Slam Champion.</li>
+    </ul>
+    <ul class="listItem">
+        <li>
+            <ul class="listItem">
+                <li><h2>12 Things To Do</h2></li>
+                <li>
+                    <div class="headerDivider"></div>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <div class="container-fluid">
+                <div class="row g-2">
+                    <template x-for="(element, i) in list[4]">
+                        <a role="button" class="col-sm-12 col-lg-3 square" data-bs-toggle="modal" data-bs-target="#rightModal" x-on:click="selected = i">
+                            <div class="theme-park-carousel-parent">
+                                <div class="theme-park-carousel-text">
+                                    <div style="flex: 1">
+                                        <h4 x-text="element['name']"></h4>
+                                    </div>
+                                    <span class="expandButton">EXPLORE 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="5.888" height="8.549" viewBox="0 0 5.888 8.549" style="margin-top: -1px;">
+                                            <path id="Icon_material-play-arrow" data-name="Icon material-play-arrow" d="M12,8.5v8.549l5.888-4.275Z" transform="translate(-12 -8.5)" fill="#fff"/>
+                                        </svg>                                      
+                                    </span>
+
+                                </div>
+                                <div class="theme-park-carousel" :style="element['image']"></div>
+                            </div>
+                        </a>
+                    </template>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
