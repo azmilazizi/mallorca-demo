@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "npm install && gh-pages -d node_modules"
   },
   "author": "Azmil Azizi",
   "license": "ISC",
   "dependencies": {
     "alpinejs": "^3.10.3",
     "bootstrap": "^5.2.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
